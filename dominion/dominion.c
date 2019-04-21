@@ -1258,7 +1258,7 @@ int adventurerEffect(struct gameState *state)
    int tempHand[MAX_HAND];
    int tempCount = 0;
 
-   while (drawnTreasure<2){								//if the deck is empty, we need to shuffle discard and add to the deck
+   while (drawnTreasure<=2){			//bug: should be <2, not <=2		//if the deck is empty, we need to shuffle discard and add to the deck
       if (state->deckCount[currentPlayer] < 1){
          shuffle(currentPlayer, state);
       }
@@ -1290,7 +1290,7 @@ int smithyEffect(struct gameState *state, int handPos)
    }
 
    //discard played card from hand
-   discardCard(handPos, currentPlayer, state, 0);
+   discardCard(handPos, currentPlayer+1, state, 0);		//bug: added +1 to current player
 
    return 0;
 }
@@ -1303,7 +1303,7 @@ int villageEffect(struct gameState *state, int handPos)
    drawCard(currentPlayer, state);
 
    //+2 actions
-   state->numActions = state->numActions + 2;
+   state->numActions = state->numActions;			//bug: removed + 2 from number of actions
 
    //discard played card from hand
    discardCard(handPos, currentPlayer, state, 0);
@@ -1326,7 +1326,7 @@ int stewardEffect(struct gameState *state, int handPos, int choice1, int choice2
    }
    //discard two cards from hand
    else{
-      discardCard(choice2, currentPlayer, state, 1);
+      discardCard(choice3, currentPlayer, state, 1);			//bug: changed choice2 to choice3, choice3 is now discarded twice
       discardCard(choice3, currentPlayer, state, 1);
    }
    
