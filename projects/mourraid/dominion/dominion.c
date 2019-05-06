@@ -643,8 +643,7 @@ int getCost(int cardNumber)
   return -1;
 }
 
-int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
-{
+int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus){
   int i;
   int j;
   int k;
@@ -1226,7 +1225,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
   state->coins = 0;
 
   //add coins for each Treasure card in player's hand
-  for (i = 0; i < state->handCount[player]; i++)
+    for (i = 0; i < state->handCount[player]; i++)
     {
       if (state->hand[player][i] == copper)
 	{
