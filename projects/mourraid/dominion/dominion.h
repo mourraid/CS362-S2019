@@ -128,4 +128,29 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+//======= Below are files added by Devin Mourrain =======
+
+int adventurerEffect(struct gameState *state);
+/* plays the effect of the adventurer card
+   draw cards until you have two treasure cards, then discard rest*/
+
+int smithyEffect(struct gameState *state, int handPos);
+/* plays the effect of the smithy card
+   draw three cards, then discard smithy*/
+
+int villageEffect(struct gameState *state, int handPos);
+/* plays the effect of the village card
+   draws one card and adds two actions, then discard village*/ 
+ 
+int stewardEffect(struct gameState *state, int handPos, int choice1, int choice2, int choice3);
+/* plays the effect of the steward card
+   player chooses from 3 actions:
+   draw two cards, add two coins, or discard two cards from hand*/ 
+
+int cutpurseEffect(struct gameState *state, int handPos);
+/* plays the effect of the cutpurse card
+   player gets two coins then actions for other players:
+   discard first found copper, if no copper: reveal hand*/
+
+
 #endif
