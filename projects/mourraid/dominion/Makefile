@@ -13,6 +13,31 @@ testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc  -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
 
+#########Added by Devin Mourrain
+
+randomtestresults: randomtestadventurer randomtestcard1 randomtestcard2
+	make randomtestadventurer
+	make randomtestcard1
+	make randomtestcard2
+	echo "randomTestAdventurer: \n"
+	./randomtestadventurer
+	gcov randomtestadventurer.c
+	echo "randomtestcard1: \n"
+	./randomtestcard1
+	gcov randomtestcard1.c
+	echo "randomtestcard2: \n"
+	./randomtestcard2
+	gcov randomtestcard2.c
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+
 #########
 
 badTestDrawCard: badTestDrawCard.c dominion.o rngs.o
@@ -39,4 +64,4 @@ player: player.c interface.o
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player randomtestresults randomtestadventurer randomtestcard1 randomtestcard2  player.exe *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
